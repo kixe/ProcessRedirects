@@ -341,7 +341,7 @@ _END;
 
 	public function ___uninstall() {
 		$p = $this->pages->get('template=admin, name=redirects');
-		$p->delete();
-		$this->database->query("DROP TABLE {$this->className}");
+		if ($p->id) $p->delete();
+		$this->database->query("DROP TABLE IF EXISTS {$this->className}");
 	}
 }
